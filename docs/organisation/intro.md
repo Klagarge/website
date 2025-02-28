@@ -38,7 +38,12 @@ code pour rejoindre l'équipe : <b>{{ teams_code }}</b>
 
 ## Programme des cours
 
-- Horaire : 14:35 - 17:00
+- Horaire : 13:00 - 15:25 (avec deux pauses de 5 minutes)
+    - 13:00 - 13:45 : Cours
+    - 13:45 - 13:50 : Pause
+    - 13:50 - 14:35 : Cours / TP
+    - 14:35 - 14:40 : Pause
+    - 14:40 - 15:25 : Cours / TP
 - Salle de classe : HEIA-FR / C00.16
 
 {% set week_no = 8 %}
