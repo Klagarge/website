@@ -50,7 +50,7 @@ Des applications nécessitant un accès au matériel ou devant traiter une très
 **Le développement de module sous Linux souffre de quelques limitations:**
 
 - Le module doit impérativement être développé en C (ou récemment en Rust).
-  C++ n'est pas supporté (voir http://vger.kernel.org/lkml/#s15-3).
+  C++ n'est pas supporté (voir https://lkml.org/lkml/2004/1/20/20).
 - Le module doit impérativement être développé sous licence en général GPL
   (GNU Public Licence)
 - La bibliothèque standard C n'est pas disponible dans le noyau.
