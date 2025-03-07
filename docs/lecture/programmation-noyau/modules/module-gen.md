@@ -74,4 +74,4 @@ Linux.
   ```
 - Reconfigurer le noyau pour générer le module (`make linux-menuconfig`)
 - Régénérer le noyau (`make`)
-- Voir `./Documenation/kbuild` pour plus de détails et des exemples plus complets
+- Voir [`./Documenation/kbuild`](https://docs.kernel.org/kbuild/kbuild.html) pour plus de détails et des exemples plus complets
