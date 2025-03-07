@@ -162,7 +162,7 @@ Au terme de ce module, les étudiant-e-s seront capable de :
     - lieu
     - date
     - version
-- Par journée de cours (sujet / thème) entre 1 et 4 pages
+- Entre 1 et 4 pages par thème (comme on traite un thème sur 2 semaines, ça fait entre 1 et 2 pages par semaine)
     - Résumé du laboratoire
     - Réponse aux questions
     - Synthèse sur ce qui a été appris/exercé
