@@ -45,7 +45,7 @@ Dans le noyau Linux, l'accès aux entrées/sorties placées en mémoire physique
 
 - L'interface `<linux/io.h>` fournit les services nécessaires
 - La méthode `ioremap` permet de mapper dans la mémoire virtuelle du
-- noyau les entrées/sorties souhaitées
+  noyau les entrées/sorties souhaitées
   ``` c
   void* ioremap (unsigned long phys_addr, unsigned long size);
   ```
