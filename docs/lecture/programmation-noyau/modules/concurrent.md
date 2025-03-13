@@ -116,7 +116,7 @@ L'interface `<linux/atomic.h>` propose les services reliés aux variables atomiq
 - Le type `atomic_t` représente un nombre entier signé (minimum 24 bits)
 - Opérations pour lire et écrire un compteur
   ``` c
-  atomic_set (atomic_t* v, int i);
+  void atomic_set (atomic_t* v, int i);
   int atomic_read (atomic_t *v);
   ```
 - Opérations sans valeurs de retour
