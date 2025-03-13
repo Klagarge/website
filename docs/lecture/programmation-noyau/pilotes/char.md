@@ -304,7 +304,7 @@ Le pilote doit ensuite être enregistré dans le noyau à l'aide de la méthode
 [`cdev_add`](https://elixir.bootlin.com/linux/v5.15.148/source/include/linux/cdev.h#L29)
 
 ```c
-int cdev_add (stuct cdev *p, dev_t dev, unsigned count);
+int cdev_add (struct cdev *p, dev_t dev, unsigned count);
 ```
 
 - `p` pointeur sur la structure du pilote

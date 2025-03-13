@@ -46,17 +46,17 @@ L'interface `<linux/mutex.h>` propose les services reliés aux mutuxes
   _thread_ sera bloqué. **Attention**: ce service ne peut pas être
   interrompu, empêchant la destruction du _thread_.
   ``` c
-  void mutex_lock (stuct mutex* lock);
+  void mutex_lock (struct mutex* lock);
   ```
 - Accès à la ressource critique, mais interruptible par le signal fatal
   (`SIGKILL`). Une valeur non zéro est retourné si le verrou n'a pas été
   tenu.
   ``` c
-  int mutex_lock_killable (stuct mutex* lock);
+  int mutex_lock_killable (struct mutex* lock);
   ```
 - Accès à la ressource critique, mais interruptible par tous les signaux
   ``` c
-  int mutex_lock_interruptible (stuct mutex* lock);
+  int mutex_lock_interruptible (struct mutex* lock);
   ```
 - Accès à la ressource, mais sans attente (non zéro si pas disponible)
   ``` c
