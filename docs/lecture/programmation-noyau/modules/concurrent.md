@@ -43,7 +43,7 @@ L'interface `<linux/mutex.h>` propose les services reliés aux mutuxes
   void mutex_init (struct mutex* lock);
   ```
 - Accès à la ressource critique. Si l'accès n'est pas autorisé, le
-  _thread_ sera bloqué. **Attention**: ce service ne pas être
+  _thread_ sera bloqué. **Attention**: ce service ne peut pas être
   interrompu, empêchant la destruction du _thread_.
   ``` c
   void mutex_lock (stuct mutex* lock);
