@@ -61,7 +61,7 @@ Dans le noyau Linux, l'accès aux entrées/sorties placées en mémoire physique
 ![](img/io-remap.drawio.svg)
 </figure>
 
-Il n'est pas recommandé d'utiliser l'adresse retournée par la fonction «ioremap» comme pointeur sur les registres.
+Il n'est pas recommandé d'utiliser l'adresse retournée par la fonction `ioremap` comme pointeur sur les registres.
 
 Il est plutôt conseillé d'utiliser les macros d'accès suivantes :
 
