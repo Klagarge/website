@@ -56,9 +56,10 @@ Cette macro est disponible depuis l'interface `linux/moduleparam.h`**
   ``` bash
   insmod mymodule.ko elements=-1 'text="bonjour le monde"'
   ```
-- Avec `modprobe`, il suffit d'inclure les paramètres du module dans le
-  fichier `/etc/modprobe.conf`, par exemple :
-  ``` text
+- Avec `modprobe`, il suffit d'inclure les paramètres du module dans 
+  un fichier avec l'extension `.conf` qui se trouve dans le dossier `/etc/modprobe.d`.
+  Par exemple : `/etc/modprobe.d/mymodule.conf` :
+  ``` text title="/etc/modprobe.d/mymodule.conf"
   options mymodule elements=5 text="salut les copains..."
   ```
 - Si le module est _linké_ statiquement avec le noyau, on peut passer
