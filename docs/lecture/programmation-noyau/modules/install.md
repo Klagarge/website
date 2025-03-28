@@ -32,8 +32,8 @@ préalablement chargés dans le noyau Linux. Cette tâche étant
 relativement fastidieuse, la commande `modprobe` offre une alternative
 très intéressante aux commandes précédentes.
 
-- Pour installer un module: `modprobe <module_name>`
-- Pour désinstaller un module: `modprobe -r <module_name>`
+- Pour installer un module: `modprobe <module_name>` (sans l'extension `.ko`)
+- Pour désinstaller un module: `modprobe -r <module_name>` (sans l'extension `.ko`)
 - Pour charger le module souhaité, `modprobe` interprète le fichier
   `modules.dep` situé dans le répertoire `/lib/modules/<kernel_version>/`
 - Ce fichier est généré par les `Makefile` du noyau. Pour inclure son
