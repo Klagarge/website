@@ -91,7 +91,3 @@ Les étudiant-e-s devront être capables :
 ## Horaire de passage (TBD)
 
 L'horaire sera publié plus tard.
-
-!!! note "Archives 2021/2022"
-    - [Objectifs](assets/a.02_objectifs_examen_oral-csel1.pdf)
-    - Horaire de passage (TBD)

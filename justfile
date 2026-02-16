@@ -2,27 +2,24 @@ prefix := "/"
 
 serve-now:
     #!/usr/bin/env bash
-    poetry run mkdocs serve
+    uv run mkdocs serve --livereload
+
+serve-next-week:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    CALENDAR_TODAY="today in 7 days" uv run mkdocs serve --livereload
 
 serve-all:
     #!/usr/bin/env bash
     set -euxo pipefail
-    CALENDAR_TODAY="today in 10 year" poetry run mkdocs serve
-
-build-all:
-    #!/usr/bin/env bash
-    CALENDAR_TODAY="today in 10 year" poetry run mkdocs build -d public -f mkdocs.yml
-
-clean:
-    #!/usr/bin/env bash
-    rm -Rf public
+    CALENDAR_TODAY="today in 10 years" uv run mkdocs serve --livereload
 
 archive YEAR:
     #!/usr/bin/env bash
     set -euxo pipefail
-    target="csel-website-{{ YEAR }}.wzip"
+    target="csel1-website-{{ YEAR }}.wzip"
     rm -Rf public
     rm $target || true
-    CALENDAR_TODAY="today in 10 year" poetry run mkdocs build -d public -f mkdocs.yml
+    CALENDAR_TODAY="today in 10 years" uv run mkdocs build -d public -f mkdocs.yml
     echo {{ prefix }} >public/.prefix
     cd public && zip -FS -r ../$target . && cd ..

@@ -3,34 +3,44 @@ name = "csel1-website"
 version = "0.1.0"
 description = "CSEL1 Web Site"
 authors = [{ name = "Jacques Supcik", email = "jacques.supcik@hefr.ch" }]
-license = { text = "Apache-2.0 OR MIT" }
-readme = "README.md"
-requires-python = ">=3.11,<4.0"
+requires-python = ">=3.10,<4.0"
+license = "Apache-2.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
 dependencies = [
-    "mkdocs (>=1.6.1,<2.0.0)",
-    "mkdocs-awesome-pages-plugin (>=2.10.1,<3.0.0)",
-    "mkdocs-calendar-plugin (>=0.4.5,<0.5.0)",
-    "mkdocs-git-revision-date-localized-plugin (>=1.3.0,<2.0.0)",
-    "mkdocs-glightbox (>=0.4.0,<0.5.0)",
-    "mkdocs-include-markdown-plugin (>=7.1.4,<8.0.0)",
-    "mkdocs-jconfig-plugin (>=0.1.3,<0.2.0)",
-    "mkdocs-macros-plugin (>=1.3.7,<2.0.0)",
-    "mkdocs-material (>=9.6.5,<10.0.0)",
-    "mkdocs-mermaid2-plugin (>=1.2.1,<2.0.0)",
-    "mkdocs-minify-plugin (>=0.8.0,<0.9.0)",
-    "mkdocs-pages-j2-plugin (>=0.3.1,<0.4.0)",
-    "mkdocs-static-i18n (>=1.3.0,<2.0.0)",
-    "python-markdown-math (>=0.8,<0.9)",
-    "platformdirs (>=4.3.6,<5.0.0)",
-    "mkdocs-open-in-new-tab (>=1.0.8,<2.0.0)",
-    "mkdocs-exclude-search (>=0.6.6,<0.7.0)",
-    "pytz (>=2025.1,<2026.0)",
-    "python-markdown-comments @ git+https://github.com/ryneeverett/python-markdown-comments.git@973fe7b"
+    "mkdocs>=1.6.1,<2",
+    "mkdocs-awesome-pages-plugin>=2.10.1,<3",
+    "mkdocs-calendar-plugin>=0.4.5,<0.5",
+    "mkdocs-git-revision-date-localized-plugin>=1.4.7,<2",
+    "mkdocs-glightbox>=0.5.1,<0.6",
+    "mkdocs-include-markdown-plugin>=7.2.0,<8",
+    "mkdocs-jconfig-plugin>=0.1.3,<0.2",
+    "mkdocs-macros-plugin>=1.4.0,<2",
+    "mkdocs-material>=9.6.22",
+    "mkdocs-mermaid2-plugin>=1.2.2,<2",
+    "mkdocs-minify-plugin>=0.8.0,<0.9",
+    "mkdocs-pages-j2-plugin>=0.3.1,<0.4",
+    "mkdocs-static-i18n>=1.3.0,<2",
+    "python-markdown-comments",
+    "python-markdown-math>=0.9,<0.10",
+    "platformdirs>=4.5.0,<5",
+    "mkdocs-open-in-new-tab>=1.0.8,<2",
+    "click<=8.2.0",
+    "mkdocs-exclude-search>=0.6.6",
 ]
 
-[tool.poetry]
-package-mode = false
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+python-markdown-comments = { git = "https://github.com/ryneeverett/python-markdown-comments.git", rev = "973fe7b" }
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.9.0,<0.10.0"]
+build-backend = "uv_build"

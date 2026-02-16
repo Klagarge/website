@@ -6,16 +6,18 @@ copyright: "Copyright &copy; {{ cal.today.year }} Haute école d'ingénierie et 
 extra:
   show_page_revision_on_all_pages: false
   teacher_name: "Jacques Supcik"
-  year: "2024-2025"
-  teams_code: s3y9d5l
+  year: "2025-2026"
+  teams_code: iix61bm
   kver: 5.15.148
   info:
-    students_count: 9
-    students_cs: 7
-    students_eie: 2
+    students_count: 20
+    students_cs: 16
+    students_ds: 1
+    students_eie: 1
+    students_ics: 2
     students_enen: 0
-    students_ft: 4
-    students_pt: 5
+    students_ft: 9
+    students_pt: 11
 
   pdf_to_jpg: programmation-noyau/modules/assets/sp.03.1_mas_csel_noyau_modules.pdf
 
@@ -34,9 +36,10 @@ extra:
       link: https://www.youtube.com/hessofilms
 
   calendar_plugin:
-    start: 2025-02-17
-    end: 2025-06-06
-    week_names: [
+    start: 2026-02-16
+    end: 2026-06-05
+    week_names:
+      [
         SP-1,
         SP-2,
         SP-3,
@@ -44,14 +47,14 @@ extra:
         SP-5,
         SP-6,
         SP-7,
+        null,
         SP-8,
         SP-9,
-        null,
         SP-10,
         SP-11,
         SP-12,
         SP-13,
-        SP-14
+        SP-14,
         SP-15,
       ]
     plan:
@@ -106,8 +109,8 @@ extra_css:
 
 extra_javascript:
   - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=es6
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
   admonition: {}

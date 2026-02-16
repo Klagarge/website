@@ -11,6 +11,12 @@ title: "Introduction"
     {%- if info.students_cs  > 0 %}
     - {{ info.students_cs }} étudiant{% if info.students_cs  > 1 %}s{% endif %} CS
     {%- endif %}
+    {%- if info.students_ds  > 0 %}
+    - {{ info.students_ds }} étudiant{% if info.students_ds  > 1 %}s{% endif %} DS
+    {%- endif %}
+    {%- if info.students_ics  > 0 %}
+    - {{ info.students_ics }} étudiant{% if info.students_ics  > 1 %}s{% endif %} ICS
+    {%- endif %}
     {%- if info.students_eie  > 0 %}
     - {{ info.students_eie }} étudiant{% if info.students_eie  > 1 %}s{% endif %} EIE
     {%- endif %}
@@ -38,12 +44,12 @@ code pour rejoindre l'équipe : <b>{{ teams_code }}</b>
 
 ## Programme des cours
 
-- Horaire : 13:00 - 15:25 (avec deux pauses de 5 minutes)
-    - 13:00 - 13:45 : Cours
-    - 13:45 - 13:50 : Pause
-    - 13:50 - 14:35 : Cours / TP
-    - 14:35 - 14:40 : Pause
-    - 14:40 - 15:25 : Cours / TP
+- Horaire : 14:35 - 17:00 (avec deux pauses de 5 minutes)
+    - 14:35 - 15:20 : Cours
+    - 15:20 - 15:25 : Pause
+    - 15:25 - 16:10 : Cours / TP
+    - 16:10 - 16:15 : Pause
+    - 16:15 - 17:00 : Cours / TP
 - Salle de classe : HEIA-FR / C00.16
 
 {% set week_no = 8 %}
@@ -57,18 +63,20 @@ code pour rejoindre l'équipe : <b>{{ teams_code }}</b>
 | {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 2    | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 3    | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 4    | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation système Linux 1  | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation système Linux 2  | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | **Vendredi Saint**             | {% set i = i + 1 %}
 | {{ week_no + i }}               |                         | **Pâques**                     | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}  | {{ cal.start | ld(i) }} | Programmation système Linux 1  | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}  | {{ cal.start | ld(i) }} | Programmation système Linux 2  | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Programmation système Linux 3  | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Programmation système Linux 4  | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | **Pont de l'Ascension**        | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Optimisation système Linux     | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Mini projet intégré 1          | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | **Pont de l'Ascension**        | {% set i = i + 1 %}
-| {{ week_no + i  }}              | {{ cal.start | ld(i) }} | Mini projet intégré 2          | {% set i = i + 1 %}
+| {{ week_no + i  }}              | {{ cal.start | ld(i) }}[^1] | Mini projet intégré 2          | {% set i = i + 1 %}
 
-[Calendrier MSE {{ year }}](assets/AY24-25_CalendrierAcademique_MSE_Reg-F.pdf)
+[^1]: Ce jours est réservé pour finaliser le mini projet intégré. Il n'y a pas de cours en présentiel ce jour-là.
+
+[Calendrier MSE {{ year }}](assets/MSE_CalendrierAcademique_2025-2026_vf.pdf)
 
 ## Déroulement des cours
 
@@ -320,6 +328,3 @@ ISBN-10: 0672322269 | ISBN-13: 978-0672322266
 ### Consultants et fabricants 
 - [Denx software Engineering (U-Boot / ELDK)](http://www.denx.de)
 - [bootlin (Experts Linux embarqué)](http://bootlin.com)
-
-!!! note "Archives 2021/2022"
-    - [01 Introduction](assets/sp.01.1_mas_csel_introduction.pdf)

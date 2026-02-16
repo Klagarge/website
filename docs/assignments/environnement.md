@@ -85,13 +85,16 @@ Acceptez-les toutes et cliquez sur le bouton "Install".
 Ouvrez maintenant un terminal dans VSCode et téléchargez "buildroot" avec la commande suivante:
 
 ```bash
-get-buildroot.sh 
+/usr/local/bin/get-buildroot.sh 
 ```
 
 <figure markdown>
 ![Etcher](environnement/get_buildroot.png)
 <figcaption>Téléchargement de Buildroot</figcaption>
 </figure>
+
+!!! note "Note"
+    Vous pouvez ignorer les _warnings_ produites par la compilation.
 
 Pour votre culture générale, étudiez le script `get-buildroot.sh` dans `/usr/local/bin/`.
 
@@ -131,25 +134,21 @@ make
 Actualisez maintenant le "root filesystem":
 
 ``` bash
-rm -Rf /rootfs/*
-tar xf /buildroot/output/images/rootfs.tar -C /rootfs
+/usr/local/bin/extract-rootfs.sh -d
 ```
-
-!!! note "Note"
-    Vous pouvez aussi utiliser les script `/usr/local/bin/delete-rootfs.sh` 
-    et `/usr/local/bin/extract-rootfs.sh` présents dans l'image Docker.
 
 ### Gravure de la carte SD
 
 Avant de pouvoir graver la carte SD, vous devez copier les images dans le répertoire synchronisé avec votre ordinateur.
-Vous pouvez utiliser la commande `rsync` :
+Vous pouvez utiliser la commande suivante :
 
 ```bash
-rsync -rlt --progress --delete /buildroot/output/images/ /workspace/buildroot-images
+/usr/local/bin/sync-images.sh
 ```
 
 !!! note "Note"
-    Vous pouvez aussi utiliser le script `/usr/local/bin/sync-images.sh` présent dans l'image Docker.
+    Cette commande utilise `rclone` pour copier uniquement les fichiers modifiés. Rclone est un outil de synchronisation de fichiers
+    très puissant. Pour plus d'informations, consultez le [site officiel de rclone](https://rclone.org/).
 
 Pour graver la carte SD, utilisez le logiciel [Balena Etcher](https://www.balena.io/etcher/).
 Insérez la carte SD dans votre ordinateur, sélectionnez l'image `buildroot-images/sdcard.img`, sélectionnez le disque qui correspond
@@ -187,40 +186,43 @@ Lorsque la séquece de boot termine, vous pouvez vous connecter avec le login `r
 ### Mise en place de l'infrastructure réseau
 
 Pour simplifier le développement et la réalisation des différents travaux pratiques de ce cours, il est recommandé de configurer l'ensemble de l'infrastructure réseau avec des adresses IP statiques.
-On utilisera de préférence, l'adresse IP _192.168.0.14_ pour la cible et l'adresse IP _192.168.0.4_ pour la machine hôte de développement.
+On utilisera de préférence, l'adresse IP 192.168.53.14 pour la cible et l'adresse IP 192.168.53.4 pour la machine hôte de développement.
 
-L'image de la cible est déjà configurée avec l'adresse _192.168.0.14_. Configurez maintenant l'adaptateur Ethernet de votre PC (ou un adaptateur Ethernet/USB) avec l'adresse IP fixe _192.168.0.4_ :
+!!! question "Pourquoi le sous-réseau 53 ?"
+    <figure markdown>
+    ![](environnement/53.jpg)
+    <figcaption>Choupette : Un amour de Coccinelle</figcaption>
+    </figure>
+    
 
-<figure markdown>
-![Configuration de l'adresse IP](environnement/static_ip.png)
-<figcaption>Configuration de l'adresse IP statique</figcaption>
-</figure>
+L'image de la cible est déjà configurée avec l'adresse 192.168.53.14. **Configurez maintenant l'adaptateur Ethernet de votre PC (ou un adaptateur Ethernet/USB) avec l'adresse IP fixe 192.168.53.4**.
+
 
 !!! note "Note :material-microsoft-windows:"
     Si vous travaillez avec Windows, vous devez encore configurer le firewall pour permettre les connexions provenant
-    du réseau _192.168.0.0/24_.
+    du réseau 192.168.53.0/24.
 
 Reliez l'adaptateur Ethernet de votre PC avec la cible à l'aide du câble Ethernet et, depuis une console de votre PC, testez la connexion :
 
 ``` plain
-ping 192.168.0.14
+ping 192.168.53.14
 ```
 
 Vous devriez obtenir quelque chose comme ça:
 
 ``` plain
-PING 192.168.0.14 (192.168.0.14): 56 data bytes
-64 bytes from 192.168.0.14: icmp_seq=0 ttl=64 time=2.933 ms
-64 bytes from 192.168.0.14: icmp_seq=1 ttl=64 time=0.832 ms
-64 bytes from 192.168.0.14: icmp_seq=2 ttl=64 time=0.783 ms
-64 bytes from 192.168.0.14: icmp_seq=3 ttl=64 time=0.751 ms
-64 bytes from 192.168.0.14: icmp_seq=4 ttl=64 time=0.845 ms
+PING 192.168.53.14 (192.168.53.14): 56 data bytes
+64 bytes from 192.168.53.14: icmp_seq=0 ttl=64 time=2.933 ms
+64 bytes from 192.168.53.14: icmp_seq=1 ttl=64 time=0.832 ms
+64 bytes from 192.168.53.14: icmp_seq=2 ttl=64 time=0.783 ms
+64 bytes from 192.168.53.14: icmp_seq=3 ttl=64 time=0.751 ms
+64 bytes from 192.168.53.14: icmp_seq=4 ttl=64 time=0.845 ms
 ```
 
 Si vous obtenez le résultat ci-dessous, c'est que la connexion ne passe pas :
 
 ``` plain
-PING 192.168.0.14 (192.168.0.14): 56 data bytes
+PING 192.168.53.14 (192.168.53.14): 56 data bytes
 ping: sendto: Host is down
 Request timeout for icmp_seq 0
 ping: sendto: Host is down
@@ -234,7 +236,7 @@ Request timeout for icmp_seq 3
 Connectez-vous maintenant à la cible depuis votre PC par SSH:
 
 ``` plain
-ssh root@192.168.0.14
+ssh root@192.168.53.14
 ```
 
 !!! Note "Note"
@@ -254,7 +256,7 @@ ssh root@192.168.0.14
     la commande suivante:
 
     ``` plain
-    ssh-keygen -R  192.168.0.14
+    ssh-keygen -R  192.168.53.14
     ```
 
     et essayez à nouveau.
@@ -262,7 +264,7 @@ ssh root@192.168.0.14
 Si tout va bien, vous verrez un message du genre :
 
 ``` plain
-The authenticity of host '192.168.0.14' can't be established.
+The authenticity of host '192.168.53.14' can't be established.
 ED25519 key fingerprint is SHA256:...
 This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
@@ -274,7 +276,7 @@ Vous êtes maintenant connecté! Tapez la commande `uname -a` pour voir le syst�
 
 ``` plain
 # uname -a
-Linux csel {{ kver }} #1 SMP PREEMPT Sat Feb 12 19:26:27 UTC 2022 aarch64 GNU/Linux
+Linux csel {{ kver }} #1 SMP PREEMPT Thu Jan 8 14:19:30 UTC 2026 aarch64 GNU/Linux
 ```
 
 ## Mise en place de l'espace de travail (_workspace_) sous CIFS/SMB
@@ -292,7 +294,7 @@ Pour attacher manuellement l'espace de travail de la machine hôte sur la cible 
   ```
 - Attacher le workspace de la machine hôte sur la cible :
   ```plain
-  mount -t cifs -o vers=1.0,username=root,password=toor,port=1445,noserverino //192.168.0.4/workspace /workspace
+  mount -t cifs -o vers=1.0,username=root,password=toor,port=1445,noserverino //192.168.53.4/workspace /workspace
   ```
 - Détacher le workspace de la cible :
   ``` plain
@@ -307,7 +309,7 @@ Pour attacher automatiquement l'espace de travail de la machine hôte sur la cib
   ```
 - Editer le ficher "/etc/fstab" (avec vi) et ajouter la ligne ci-dessous :
   ``` plain
-  //192.168.0.4/workspace /workspace cifs vers=1.0,username=root,password=toor,port=1445,noserverino
+  //192.168.53.4/workspace /workspace cifs vers=1.0,username=root,password=toor,port=1445,noserverino
   ```
 - Activer la configuration :
   ```plain
@@ -356,7 +358,7 @@ Ces fichiers sont déjà configurés dans votre workspace.
 - Puis "Continue without scanning the task output"
 - Le terminal devrait afficher:
   ```text
-  Executing task in folder fibonacci: ssh -t root@192.168.0.14 '/usr/bin/gdbserver :1234 /workspace/src/01_environment/fibonacci/app 2' 
+  Executing task in folder fibonacci: ssh -t root@192.168.53.14 '/usr/bin/gdbserver :1234 /workspace/src/01_environment/fibonacci/app 2' 
 
   Process /workspace/src/01_environment/fibonacci/app created; pid = 312
   Listening on port 1234
@@ -455,8 +457,3 @@ Redémarrez avec un `reboot` et vérifiez que vous pouvez maintenant vous connec
    optimale pour le développement uniquement d'applications en espace
    utilisateur ?
 
----
-
-!!! note "Archives 2021/2022"
-    - [Exercices](environnement/sp.02.2_mas_csel_environnement_linux_embarque_exercices.pdf)
-    - [Code](environnement/sp.02.3_mas_csel_examples.tar)

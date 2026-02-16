@@ -85,7 +85,7 @@ processeur.
 2. Ouvrez deux shells distincts et placez une dans le _cgroup high_ et
    l'autre dans le _cgroup low_, par exemple :
    ```
-   # ssh root@192.168.0.14
+   # ssh root@192.168.53.14
    $ echo $$ > /sys/fs/cgroup/cpuset/low/tasks
    ```
    Lancez ensuite votre application dans chacun des shells. Quel
