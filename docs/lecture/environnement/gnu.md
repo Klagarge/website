@@ -50,7 +50,7 @@ même répertoire que le fichier à compiler:
 
 ## Linkage
 
-après la compilation de l'application vous devez linker tous les
+après la compilation de l'application, vous devez linker tous les
 fichiers afin d'obtenir le fichier exécutable:
 
 ``` bash
@@ -93,7 +93,7 @@ objdump -d -S -C fibonacci.o
 objdump -d -S -C fibonacci
 ```
 
-**élimination ses symboles de debugging** (pour rendre le code plus léger)
+**élimination des symboles de debugging** (pour rendre le code plus léger)
 
 ``` bash
 strip -g -o fibonacci_s fibonacci
@@ -106,8 +106,8 @@ de compiler les fichiers objets nécessaires pour sa génération.
 
 `make` ou `make -f Makefile` ou `make -f mymakefile`
 
-La description de ces dépendances se font par l'intermédiaire d'un fichier texte.
-Le nom de défaut est _Makefile_, mais il possible de le nommer différemment. 
+La description de ces dépendances se fait par l'intermédiaire d'un fichier texte.
+Le nom de défaut est _Makefile_, mais il est possible de le nommer différemment. 
 
 Exemples:
 
@@ -252,7 +252,7 @@ project(fibonacci)
 add_executable(fibonacci fibonacci.c)
 ```
 
-Ce `CMakeLists.txt` peut être suffisant pour de la compilation native, mais pour de la compilation croisée il est nécessaire de spécifier le compilateur à utiliser. On peut pour cela créer un fichier `nanopi.cmake` contenant les informations nécessaires :
+Ce `CMakeLists.txt` peut être suffisant pour de la compilation native, mais pour de la compilation croisée, il est nécessaire de spécifier le compilateur à utiliser. On peut pour cela créer un fichier `nanopi.cmake` contenant les informations nécessaires :
 
 ``` CMake title="nanopi.cmake"
 set(CMAKE_SYSTEM_NAME Linux)
