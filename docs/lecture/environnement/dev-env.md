@@ -10,6 +10,12 @@ title: Environnement de développement
 
 ![](img/dev-env/dev.drawio.svg)
 
+
+## Environnement pour le développement du noyau Linux avevc TFTP
+
+![](img/dev-env/dev-full.drawio.svg)
+
+
 ## Outils de développement
 
 - Une multitude d'outils sont disposition pour le développement de logiciel sous Linux. Dans le cadre de ce module, nous avons fait le choix d'utiliser principalement des outils libres « open source ».

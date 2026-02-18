@@ -128,3 +128,10 @@ Ref. documentation sur les bootargs:
 <figure markdown>
 ![](img/bootloader/boot-net.drawio.svg)
 </figure>
+
+## Séquence de démarrage du NanoPi NEO Plus2 - Réseau avec TFTP
+
+
+<figure markdown>
+![](img/bootloader/boot-net-full.drawio.svg)
+</figure>

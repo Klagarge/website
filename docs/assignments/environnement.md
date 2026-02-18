@@ -16,7 +16,7 @@ Ce travail pratique vise les objectifs suivants :
 
 Il comprendra les activités suivantes :
 
-1. Mise œuvre de l'environnement de développement sous Linux (avec Docker)
+1. Mise en œuvre de l'environnement de développement sous Linux (avec Docker)
     1. Installation de la machine hôte
     1. Création de l'espace de travail sur la machine hôte
     1. Génération de l'environnement de développement (toolchain, U-Boot, Linux kernel, rootfs)
@@ -76,7 +76,7 @@ Chaque membre de l'équipe peut maintenant faire un "Clone" du projet _csel-work
 Ouvrez le projet avec VSCode. Le système vous demandera probablement si vous faites confiance
 aux auteurs de ce dossier et vous pouvez cliquer sur le bouton correspondant.
 
-Si le système vous propose de ré-ouvrir le dossier dans un container, acceptez cette
+Si le système vous propose de réouvrir le dossier dans un container, acceptez cette
 proposition en cliquant sur "Reopen in Container"
 
 Lorsque vous ouvrez le projet avec VSCode, le système vous proposera probablement d'installer des extensions.
@@ -156,12 +156,12 @@ Insérez la carte SD dans votre ordinateur, sélectionnez l'image `buildroot-ima
 
 <figure markdown>
 ![Etcher](environnement/etcher.png)
-<figcaption>Ecriture de la carte SD</figcaption>
+<figcaption>Écriture de la carte SD</figcaption>
 </figure>
 
 Pour tester la bonne gravure de la carte SD, il suffira de l'installer sur la cible et de la redémarrer.
 On pourra voir la séquence de lancement (boot sequence) sur la console avec un client "terminal série" installé sur l'hôte. Vous pouvez
-utiliser par exemple:
+utiliser, par exemple:
 
 - [Coolterm](https://freeware.the-meiers.org/){target=_blank} :material-apple: :material-microsoft-windows: :material-linux:
 - [Tera Term](https://ttssh2.osdn.jp/index.html.en){target=_blank} :material-microsoft-windows:
@@ -176,7 +176,7 @@ Voici ce que vous devriez voir sur la console :
 <figcaption>Début de la séquence de boot</figcaption>
 </figure>
 
-Lorsque la séquece de boot termine, vous pouvez vous connecter avec le login `root` :
+Lorsque la séquence de boot termine, vous pouvez vous connecter avec le login `root` :
 
 <figure markdown>
 ![Boot fin](environnement/boot_end.png)
@@ -292,10 +292,17 @@ Pour attacher manuellement l'espace de travail de la machine hôte sur la cible 
   ```
   mkdir -p /workspace
   ```
+
 - Attacher le workspace de la machine hôte sur la cible :
   ```plain
   mount -t cifs -o vers=1.0,username=root,password=toor,port=1445,noserverino //192.168.53.4/workspace /workspace
   ```
+
+- Vérifier que les fichiers de votre workspace sont maintenant accessibles depuis la cible :
+  ``` plain
+  ls /workspace
+  ```
+
 - Détacher le workspace de la cible :
   ``` plain
   umount /workspace
@@ -307,7 +314,7 @@ Pour attacher automatiquement l'espace de travail de la machine hôte sur la cib
   ``` plain
   mkdir -p /workspace
   ```
-- Editer le ficher "/etc/fstab" (avec vi) et ajouter la ligne ci-dessous :
+- Éditer le fichier "/etc/fstab" (avec vi) et ajouter la ligne ci-dessous :
   ``` plain
   //192.168.53.4/workspace /workspace cifs vers=1.0,username=root,password=toor,port=1445,noserverino
   ```
@@ -344,7 +351,7 @@ Le debugging d'application peut être effectué de deux manières :
 Cette dernière option offre l'avantage de pouvoir utiliser VS-Code.
 
 Visual Studio Code avec ses extensions et les "multi-root workspaces" offre une interface très simple
-et un debugger de qualité pour le debugging de vos applications. Pour configurer VS-Code, il suffit trois fichiers:
+et un debugger de qualité pour le debugging de vos applications. Pour configurer VS-Code, il suffit de trois fichiers:
 
 - Un fichier `*.code.workspace` (pour le projet)
 - Un fichier `task.json` (dans le dossier `.vscode` de chaque "root")
@@ -357,6 +364,7 @@ Ces fichiers sont déjà configurés dans votre workspace.
 - Choisissez "gdbserver fibonacci"
 - Puis "Continue without scanning the task output"
 - Le terminal devrait afficher:
+
   ```text
   Executing task in folder fibonacci: ssh -t root@192.168.53.14 '/usr/bin/gdbserver :1234 /workspace/src/01_environment/fibonacci/app 2' 
 
@@ -384,19 +392,25 @@ partition vfat `boot`. Pour créer ce fichier, il faut tout d'abord
 - Créer un dossier `boot-scripts` dans le _workspace_
 - Ouvrir/créer le fichier de commandes `boot_cifs.cmd` et l'ouvrir avec VS-Code
 - Entrer le contenu suivant :
-  ``` plain
+  ``` plain title="boot_cifs.cmd"
   {! include "./environnement/inc/boot_cifs.cmd" !}
   ```
-- Ecrire aussi le `Makefile` suivant:
+- Écrire aussi le `Makefile` suivant:
   ``` makefile
   {! include "./environnement/inc/makefile" !}
   ```
 - Dans un terminal, entrer dans le dossier `boot-scripts` et taper la
-  command `make` Vous devriez obtenir le fichier `boot.cifs` dans le
+  commande `make` Vous devriez obtenir le fichier `boot.cifs` dans le
   dossier `boot-scripts`
 - Copier le fichier `boot.cifs` sur la partition vfat `boot` de la carte
-  SD
-- Redémarer la cible et l'arrêter dans l'U-Boot (en pressant une touche
+  SD. Un moyen simple de le faire est de se connecter sur la cible et de taper les commandes suivantes:
+  ``` bash
+  mkdir -p /boot
+  mount /dev/mmcblk2p1 /boot
+  cp /workspace/boot-scripts/boot.cifs /boot/
+  ```
+
+- Redémarrer la cible et l'arrêter dans l'U-Boot (en pressant une touche
   au démarrage) et changer le script de démarrage de la cible avec la
   commande `setenv boot_scripts boot.cifs`. Si vous souhaitez conserver
   cette configuration, taper également la commande `saveenv`
@@ -424,6 +438,51 @@ chmod go= /etc/ssh/*_key
 ```
 
 Redémarrez avec un `reboot` et vérifiez que vous pouvez maintenant vous connecter avec SSH.
+
+!!! note "Note"
+    les clés SSH ont changé, vous devez encore effacer les entrées dans votre fichier `known_hosts` avec
+    la commande suivante:
+   
+    ```plain
+    ssh-keygen -R 192.168.53.14
+    ```
+
+## Téléchargement du noyau Linux par le réseau avec TFTP
+
+En plus de charger le rootfs via CIFS/SMB, il est aussi possible de charger le noyau Linux par le réseau avec TFTP. Votre
+_devcontainer_ est déjà configuré pour faire du TFTP et il vous reste à configurer l'U-Boot pour charger le noyau Linux par le réseau. Pour ce faire, créez un nouveau fichier de configuration (par exemple `boot_net.cmd`) avec le contenu suivant:
+
+``` plain title="boot_net.cmd"
+{! include "./environnement/inc/boot_net.cmd" !}
+```
+
+- Modifiez le `Makefile` pour générer aussi le fichier `boot.net`
+- Générez le fichier `boot.net` et copiez-le sur la carte SD
+- Redémarrez la cible, arrêtez-vous dans l'U-Boot et changez le script de démarrage pour utiliser le nouveau script `boot.net`.
+
+
+
+!!! note "Note"
+    Le démarrage par le réseau avec TFTP est plus lent que le démarrage avec la carte SD. Il est donc recommandé de l'utiliser uniquement pour les tests et le développement du noyau Linux.
+
+    Pour améliorer les performances du démarrage par le réseau, nous utilisons une version compressée du noyau Linux (avec gzip). Étudiez
+    le script `boot_net.cmd` pour comprendre comment cela fonctionne.
+
+
+!!! warning "IMportant"
+    Vous devez avoir une version comprimée du noyau Linux (avec gzip) dans le dossier `buildroot-images/tftp` pour que le démarrage par le réseau fonctionne. Si vous n'avez pas cette version, vous pouvez la générer avec la commande suivante:
+
+    ```bash
+    gzip -k /buildroot/output/images/Image
+    ```
+
+## Résumé
+
+Vous avez maintenant le choix entre trois configurations de démarrage de votre cible:
+
+- Démarrage avec la carte SD (mode production) avec le script `boot.scr`
+- Démarrage du noyau avec la carte SD et chargement du rootfs via CIFS/SMB (mode développement) avec le script `boot.cifs`
+- Démarrage du noyau Linux et chargement du rootfs par le réseau (mode développement noyau) avec le script `boot.net`
 
 ## Travail
 1. Installez l'environnement de développement sur la machine hôte, selon
@@ -453,7 +512,7 @@ Redémarrez avec un `reboot` et vérifiez que vous pouvez maintenant vous connec
 1. Comment faudrait-il procéder pour utiliser la carte eMMC en lieu et
    place de la carte SD ?
 1. Dans le support de cours, on trouve différentes configurations de
-   l'environnement de développement. Qu'elle serait la configuration
+   l'environnement de développement. Quelle serait la configuration
    optimale pour le développement uniquement d'applications en espace
    utilisateur ?
 
