@@ -1,5 +1,5 @@
 ---
-title: Chaîne d'outils GNU
+title: Chaîne d'outils GNU (et autres outils)
 ---
 
 - `make` --> utilitaire pour l'automation de la génération de logiciel
@@ -232,3 +232,86 @@ $(EXEC): $(OBJS)
 	@echo "(LD) $@"
 	@$(CC) $(LDFLAGS) -o $@ $^
 ```
+
+## CMake
+
+Les `Makefile` sont très pratiques pour la génération d'applications,
+mais ils peuvent devenir très rapidement difficiles à maintenir, surtout
+pour les projets de grande envergure. C'est pour cette raison que des
+outils de génération de `Makefile` ont été développés, parmi lesquels on
+trouve _CMake_.
+
+Pour générer un `Makefile` à l'aide de _CMake_, il suffit de créer un
+fichier `CMakeLists.txt` à la racine du projet, et d'y spécifier les différentes cibles et dépendances.
+Le fichier permettant de compiler _fibonacci_ peut être le suivant:
+
+``` CMake title="CMakeLists.txt"
+cmake_minimum_required(VERSION 3.28)
+project(fibonacci)
+
+add_executable(fibonacci fibonacci.c)
+```
+
+Ce `CMakeLists.txt` peut être suffisant pour de la compilation native, mais pour de la compilation croisée il est nécessaire de spécifier le compilateur à utiliser. On peut pour cela créer un fichier `nanopi.cmake` contenant les informations nécessaires :
+
+``` CMake title="nanopi.cmake"
+set(CMAKE_SYSTEM_NAME Linux)
+
+find_program(CMAKE_C_COMPILER aarch64-linux-gcc)
+find_program(CMAKE_CXX_COMPILER aarch64-linux-g++)
+set(CMAKE_FIND_ROOT_PATH /buildroot/output/host)
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+set(CMAKE_C_FLAGS "-Wall -Wextra -g -O0 -MD -std=gnu17")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mcpu=cortex-a53 -funwind-tables")
+
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -g -O0 -MD -std=gnu++17")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mcpu=cortex-a53 -funwind-tables")
+```
+
+Ce fichier peut ensuite être utilisé par le `CMakeLists.txt` de la manière suivante:
+
+``` CMake title="CMakeLists.txt" hl_lines="4"
+cmake_minimum_required(VERSION 3.28)
+project(fibonacci)
+
+include(../../nanopi.cmake)
+add_executable(fibonacci fibonacci.c)
+```
+
+Pour générer le `Makefile` à partir du `CMakeLists.txt`, il suffit de lancer la commande suivante:
+
+``` bash
+cmake -S . -B build
+```
+
+Notez que le résultat se trouve dans le répertoire `build`, ce qui permet de garder la racine du projet propre.
+Pour compiler l'application, vous pouvez soit lancer la commande `make` dans le répertoire `build`,
+soit utiliser `cmake` de la manière suivante:
+
+``` bash
+cmake --build build
+```
+
+Votre application est disponible dans le répertoire `build` et peut être déployée sur la cible
+
+!!! note "Note"
+	_CMake_ permet aussi de générer des fichiers pour le système _Ninja_, qui est plus rapide que _Make_.
+	Vous trouverez plus d'informations dans la [documentation officielle de _CMake_](https://cmake.org/cmake/help/latest/index.html)
+
+## Just
+
+_Just_ est un outil semblable à `make`, mais plus moderne et plus facile
+à utiliser. Il utilise des fichiers `justfile` pour décrire les tâches à
+exécuter, et offre une syntaxe plus simple et plus lisible que les
+`Makefile`. 
+
+_Just_ est particulièrement apprécié pour sa simplicité et sa
+flexibilité, et est de plus en plus utilisé dans les projets de
+développement logiciel. Contrairement à `make`, _just_ ne repose pas sur
+des règles de suffixes et ne permet pas de limiter les tâches en
+fonction de la date de modification des fichiers.  Il n'est donc pas un
+remplacement direct de `make` et les deux outils peuvent être utilisés
+de manière complémentaire en fonction des besoins du projet.
