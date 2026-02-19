@@ -10,13 +10,13 @@ extra:
   teams_code: iix61bm
   kver: 5.15.148
   info:
-    students_count: 20
+    students_count: 18
     students_cs: 16
-    students_ds: 1
+    students_ds: 0
     students_eie: 1
-    students_ics: 2
+    students_ics: 1
     students_enen: 0
-    students_ft: 9
+    students_ft: 7
     students_pt: 11
 
   pdf_to_jpg: programmation-noyau/modules/assets/sp.03.1_mas_csel_noyau_modules.pdf
