@@ -134,7 +134,7 @@ make
 Actualisez maintenant le "root filesystem":
 
 ``` bash
-/usr/local/bin/extract-rootfs.sh -d
+/usr/local/bin/extract-rootfs.sh
 ```
 
 ### Gravure de la carte SD
@@ -492,9 +492,8 @@ Vous avez maintenant le choix entre trois configurations de démarrage de votre 
 1. Testez les différentes méthodes et techniques de débogage proposées
    par l'environnement Linux. Pour cela, générez les exemples fournis
    dans le répertoire "src/01_environment/" en suivant les
-   indications des slides. Ces fichiers se trouvent également sous
-   Moodle.
-1. Créez une partition _ext4_ avec l'espace restant sur la carte SD
+   indications des slides.
+2. Créez une partition _ext4_ avec l'espace restant sur la carte SD
   (avec les commandes `fdisk /dev/mmcblk2` et `mkfs.ext4`) et montez ce
   répertoire sous `/opt`. Démarrez ensuite automatiquement (mode
   production) un petit programme que vous aurez préalablement placé dans
