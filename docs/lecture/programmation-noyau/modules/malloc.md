@@ -61,7 +61,7 @@ Fonctions pour l'allocation de mémoire dans `<linux/slab.h>` :
 
 Libération de mémoire :
 
-  - `void kfree (const void* objp)` -> libère la mémoire allouée
+  - `void kfree (const void* objp)` --> libère la mémoire allouée
 
 Exemple :
 
