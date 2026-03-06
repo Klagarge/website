@@ -26,15 +26,22 @@ title: Bibliothèques et fonctions utiles
   participant à la liste chaînée. On le nommera généralement `list`
   ou parfois `node`.
 - Créer une liste : Si la liste est globale on utilisera la macro
-  `LIST_HEAD`, si la liste fait partie d'une structure on définira un
+  [`LIST_HEAD`](https://docs.kernel.org/core-api/list.html#c.LIST_HEAD),
+  si la liste fait partie d'une structure on définira un
   élément  `struct list_head` et on l'initialisera avec la macro
-  `INIT_LIST_HEAD`
+  [`INIT_LIST_HEAD`](https://docs.kernel.org/core-api/list.html#c.INIT_LIST_HEAD)
 - Pour manipuler les éléments de la liste chaînée, on pourra utiliser
-    - Ajouter des éléments: `list_add()`, `list_add_tail()`
-    - Supprimer, déplacer ou remplacer des éléments: `list_del()`,
-      `list_move()`, `list_move_tail()`, `list_replace()`
-    - Tester la liste: `list_empty()`
-    - Itérer sur la liste: `list_for_each_*()` de la famille des macros
+    - Ajouter des éléments:
+      [`list_add()`](https://docs.kernel.org/core-api/list.html#c.list_add),
+      [`list_add_tail()`](https://docs.kernel.org/core-api/list.html#c.list_add_tail)
+    - Supprimer, déplacer ou remplacer des éléments:
+      [`list_del()`](https://docs.kernel.org/core-api/list.html#c.list_del),
+      [`list_move()`](https://docs.kernel.org/core-api/list.html#c.list_move),
+      [`list_move_tail()`](https://docs.kernel.org/core-api/list.html#c.list_move_tail),
+      [`list_replace()`](https://docs.kernel.org/core-api/list.html#c.list_replace)
+    - Tester la liste:
+      [`list_empty()`](https://docs.kernel.org/core-api/list.html#c.list_empty)
+    - Itérer sur la liste: [`list_for_each_*()`](https://docs.kernel.org/core-api/list.html#c.list_for_each) de la famille des macros
 - Il existe également des variantes sûres (_safe_) de ce méthodes
 
 ## Exemple de liste chaînée
