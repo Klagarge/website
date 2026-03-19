@@ -193,8 +193,3 @@ Afin de valider le pilote, développer une petite application permettant d'effec
     {! include "./pilotes/src/exercice10/skeleton.c" !}
     ```
 {% endif %}
-
----
-
-!!! note "Archives 2021/2022"
-    - [Exercices](pilotes/sp.04.2_mas_csel_noyau_pilotes_exercices.pdf)

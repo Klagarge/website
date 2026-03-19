@@ -31,16 +31,24 @@ _sysfs_ est construit sous forme d'arborescence :
 
 ``` text
 /sys/
-|-- block
-|-- bus
-|-- class
-|-- dev
-|-- devices
-|-- firmware
-|-- fs
-|-- kernel
-|-- module
-|-- power
+├── block
+├── bus
+│   ├── i2c
+│   │   ├── devices
+│   …   ├── drivers
+│       │   ├── axp20x-i2c
+│       │   …
+│       …
+│       └── uevent
+├── class
+├── dev
+├── devices
+├── firmware
+├── fs
+├── hypervisor
+├── kernel
+├── module
+└── power
 ```
 
 Ceci permet de voir le système sous différents points de vue, par exemple
@@ -168,12 +176,10 @@ void device_remove_file (struct device *dev,
                          struct device_attribute *attr);
 ```
 
-## Création d'un device sous le répertoire class
+## Création d'un device sous le répertoire `class`
 
 Les attributs d'un pilote (driver) ou d'un périphérique (device) peuvent être
-accessible sous différents répertoires de l'arborscence _sysfs_. La bibliothèque
-[`platform_device`](https://elixir.bootlin.com/linux/v5.15.148/source/include/linux/platform_device.h) permet de créer assez facilement une interface pour y
-accéder.
+accessible sous différents répertoires de l'arborscence _sysfs_.
 
 Les méthodes ci-dessous définissent une [`class`](https://elixir.bootlin.com/linux/v5.15.148/source/include/linux/device/class.h#L54)
 à laquelle on pourra ensuite

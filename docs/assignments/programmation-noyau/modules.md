@@ -146,7 +146,3 @@ Quelques informations pour la réalisation du module :
     ```
 {% endif %}
 
----
-
-!!! note "Archives 2021/2022"
-    - [Exercices](modules/sp.03.2_mas_csel_noyau_modules_exercices.pdf)
