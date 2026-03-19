@@ -9,6 +9,7 @@ extra:
   year: "2025-2026"
   teams_code: iix61bm
   kver: 5.15.148
+  horaire: "1300"
   info:
     students_count: 18
     students_cs: 16

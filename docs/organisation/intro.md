@@ -44,35 +44,44 @@ code pour rejoindre l'équipe : <b>{{ teams_code }}</b>
 
 ## Programme des cours
 
+{%- if horaire == "1300" %}
+- Horaire : 13:00 - 15:25 (avec deux pauses de 5 minutes)
+    - 13:00 - 13:45 : Cours
+    - 13:45 - 13:50 : Pause
+    - 13h50 - 14:35 : Cours / TP
+    - 14:35 - 14:40 : Pause
+    - 14:40 - 15:25 : Cours / TP
+{%- else %}
 - Horaire : 14:35 - 17:00 (avec deux pauses de 5 minutes)
     - 14:35 - 15:20 : Cours
     - 15:20 - 15:25 : Pause
     - 15:25 - 16:10 : Cours / TP
     - 16:10 - 16:15 : Pause
     - 16:15 - 17:00 : Cours / TP
+{%- endif %}
 - Salle de classe : HEIA-FR / C00.16
 
 {% set week_no = 8 %}
 {% set i = 0 %}
 
-| Semaine                          | Date                    | Thème                          |
-|:---------------------------------|:------------------------|:-------------------------------|
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Environnement Linux embarqué 1 | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Environnement Linux embarqué 2 | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 1    | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 2    | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 3    | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 4    | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | **Vendredi Saint**             | {% set i = i + 1 %}
-| {{ week_no + i }}               |                         | **Pâques**                     | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i }}  | {{ cal.start | ld(i) }} | Programmation système Linux 1  | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i }}  | {{ cal.start | ld(i) }} | Programmation système Linux 2  | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Programmation système Linux 3  | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Programmation système Linux 4  | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | **Pont de l'Ascension**        | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Optimisation système Linux     | {% set i = i + 1 %}
-| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Mini projet intégré 1          | {% set i = i + 1 %}
-| {{ week_no + i  }}              | {{ cal.start | ld(i) }}[^1] | Mini projet intégré 2          | {% set i = i + 1 %}
+| Semaine                          | Date                    | Thème                                               |
+|:---------------------------------|:------------------------|:----------------------------------------------------|
+| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Environnement Linux embarqué 1 (sur site à Fribourg) | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Environnement Linux embarqué 2 (Teams)               | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 1    (sur site à Fribourg) | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 2    (Teams)               | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 3    (sur site à Fribourg) | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 4    (Teams)               | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | **Vendredi Saint**                                   | {% set i = i + 1 %}
+| {{ week_no + i }}               |                         | **Pâques**                                           | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Programmation système Linux 1  (sur site à Fribourg) | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Programmation système Linux 2  (Teams)               | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Programmation système Linux 3  (sur site à Fribourg) | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Programmation système Linux 4  (Teams)               | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | **Pont de l'Ascension**                              | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Optimisation système Linux     (sur site à Fribourg) | {% set i = i + 1 %}
+| {{ week_no + i }}/SP-{{ i }}    | {{ cal.start | ld(i) }} | Mini projet intégré 1          (Teams)               | {% set i = i + 1 %}
+| {{ week_no + i  }}              | {{ cal.start | ld(i) }}[^1] | Mini projet intégré 2      (Teams)               | {% set i = i + 1 %}
 
 [^1]: Ce jours est réservé pour finaliser le mini projet intégré. Il n'y a pas de cours en présentiel ce jour-là.
 
