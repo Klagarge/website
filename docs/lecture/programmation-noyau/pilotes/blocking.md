@@ -49,8 +49,7 @@ utilisent l'opération `poll` du pilote de périphérique dont les services sont
 disponibles dans l'interface
 [`<linux/poll.h>`](https://elixir.bootlin.com/linux/v5.15.148/source/include/linux/poll.h).
 
-Cette méthode permet d'attendre sur les ressources en mode non bloquant et
-peut être pour des opérations de lecture comme d'écriture
+Cette méthode permet de multiplexer l'attente sur plusieurs ressources : le thread se bloque une seule fois dans `epoll_wait` au lieu de se bloquer individuellement sur chaque appel `read`/`write`.
 
 ```c
 static unsigned int skeleton_poll (struct file *f,
