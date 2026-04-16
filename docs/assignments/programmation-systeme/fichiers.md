@@ -93,8 +93,3 @@ soit :**
 
 La librairie `timerfd` offre des services très intéressants pour la génération d'une horloge à haute
 résolution et surtout une interface permettant le multiplexage des entrées/sorties.
-
----
-
-!!! note "Archives 2021/2022"
-    - [Exercices](fichiers/sp.05.2_mas_csel_prog_systeme_fichiers_exercices.pdf)
