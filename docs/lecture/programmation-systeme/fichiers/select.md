@@ -252,7 +252,7 @@ if (ret == -1)
 - Les événements principaux que l'on peut surveiller sont
     - `EPOLLERR` une condition d'erreur a été levée
     - `EPOLLIN` un fichier virtuel est disponible lecture
-    - `EPOLLOUT` un ifchier virtuel est disponible en écriture
+    - `EPOLLOUT` un fichier virtuel est disponible en écriture
     - `EPOLLPRI` des données prioritaires _out-of-band_ sont diponibles
 
 
