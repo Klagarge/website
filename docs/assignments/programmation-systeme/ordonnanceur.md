@@ -94,8 +94,3 @@ processeur.
    entre différents _cgroups_, comment devrait-on procéder pour lancer
    deux tâches distinctes sur le cœur 4 de notre processeur et attribuer
    75% du temps CPU à la première tâche et 25% à la deuxième ?
-
----
-
-!!! note "Archives 2021/2022"
-    - [Exercices](ordonnanceur/sp.06.2_mas_csel_mulitprocessing_exercices.pdf)

@@ -124,6 +124,5 @@ Cette application réalisera la fonctionnalité minimale suivante :
 
 ---
 
-!!! note "Archives 2021/2022"
-    - [Donnée](mini-projet/assets/sp.08.1_mas_csel_mini_projet.pdf)
+!!! note "Complément"
     - [OLED Driver Sample Code](mini-projet/assets/oled.tar)
