@@ -8,7 +8,7 @@ Les signaux sont des interruptions logicielles permettant de traiter des
 événements asynchrones au bon déroulement du programme
 
 Les événements à l'origine de la levée des signaux sont souvent externes au
-système, par excemple pression sur la touche ++ctrl+c++ sur un clavier
+système, par exemple pression sur la touche ++ctrl+c++ sur un clavier
 
 Un processus peut envoyer un signal à un autre processus ou groupe de
 processus, offrant ainsi une forme primitive de communication
