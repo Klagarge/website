@@ -149,7 +149,7 @@ _tracepoints_ du noyau Linux que `perf` est également capable d'utiliser.
   task-clock                                         [Software event]
 ```
 
-### Comilation d'un exemple et utilisation de `perf`
+### Compilation d'un exemple et utilisation de `perf`
 
 La deuxième commande intéressante est `perf stat`. Elle permet d'obtenir différentes valeurs de
 compteurs lors de l'exécution d'un programme. Elle mesure également le temps d'exécution du
@@ -391,8 +391,3 @@ modifications :
     Décrivez comment devrait-on procéder pour mesurer la latence et la gigue d'interruption, ceci aussi
     bien au niveau du noyau (_kernel space_) que de l'application (_user space_).
 
-
----
-
-!!! note "Archives 2021/2022"
-    - [Exercices](optimisations/sp.07.2_mas_csel_optimization_exercices.pdf)
