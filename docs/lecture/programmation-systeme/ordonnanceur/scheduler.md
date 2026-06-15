@@ -219,7 +219,7 @@ void CPU_ZERO(cpu_set_t *set);
 
 ## Processor Affinity - Affection d'un CPU ou groupe de CPU
 
-Un CPU ou groupe de CPU peut être assigné à processus par l'intermédiaire
+Un CPU ou groupe de CPU peut être assigné à un processus par l'intermédiaire
 de l'appel système `sched_setaffinity`.
 
 ```c

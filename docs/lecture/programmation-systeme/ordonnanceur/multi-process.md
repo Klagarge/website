@@ -223,7 +223,7 @@ A quelques exceptions près (voir les [man pages](https://man7.org/linux/man-pag
 copiées dans le nouveau processus.
 
 Sous Linux, la copie des données se fait _à la volée_, c'est à dire les données du
-processus parent dans copiées dans l'espace du processus enfant que
+processus parent sont copiées dans l'espace du processus enfant que
 lorsque celles-ci sont modifiées par l'un ou l'autre des deux processus.
 
 <figure markdown>
