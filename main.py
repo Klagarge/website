@@ -25,3 +25,11 @@ def define_env(env):
         x = add_week(x, week)
         x = dow(x, 4)  # Friday
         return euro_day(x)
+
+
+def main():
+    print("Hello !")
+
+
+if __name__ == "__main__":
+    main()

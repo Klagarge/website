@@ -2,8 +2,8 @@
 title: "Modules noyaux"
 tpno: 2
 ---
-{% set show_sol_a = cal.tp2_sol_a %}
-{% set show_sol_b = cal.tp2_sol_b %}
+{% set show_sol_a = timeless or cal.tp2_sol_a %}
+{% set show_sol_b = timeless or cal.tp2_sol_b %}
 
 {% set exno = namespace(no=1) %}
 {% macro ex() -%}

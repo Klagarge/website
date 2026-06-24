@@ -2,9 +2,9 @@ nav:
     - index.md
     - organisation
     - documentation
-{%- if cal.lecture1 %}
+{%- if timeless or cal.lecture1 %}
     - lecture
 {% endif %}
-{%- if cal.tp1 %}
+{%- if timeless or cal.tp1 %}
     - assignments
 {% endif %}

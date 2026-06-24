@@ -1,14 +1,14 @@
 title: Leçons
 nav:
-{%- if cal.lecture1 %}
+{%- if timeless or cal.lecture1 %}
     - environnement
 {% endif %}
-{%- if cal.lecture2 %}
+{%- if timeless or cal.lecture2 %}
     - programmation-noyau
 {% endif %}
-{%- if cal.lecture3 %}
+{%- if timeless or cal.lecture3 %}
     - programmation-systeme
 {% endif %}
-{%- if cal.lecture4 %}
+{%- if timeless or cal.lecture4 %}
     - optimisations
 {% endif %}

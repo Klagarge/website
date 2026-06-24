@@ -1,0 +1,5 @@
+INHERIT: properdocs-base.yml
+site_url: https://mse-csel.github.io/website
+
+extra:
+  timeless: true

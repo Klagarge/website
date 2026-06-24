@@ -2,8 +2,8 @@
 title: "Pilotes de périphériques"
 tpno: 3
 ---
-{% set show_sol_a = cal.tp3_sol_a %}
-{% set show_sol_b = cal.tp3_sol_b %}
+{% set show_sol_a = timeless or cal.tp3_sol_a %}
+{% set show_sol_b = timeless or cal.tp3_sol_b %}
 
 {% set exno = namespace(no=0) %}
 {% set subno = namespace(no=0) %}

@@ -4,58 +4,64 @@ on:
   workflow_dispatch:
   push:
   pull_request:
-  schedule:
-    - cron: "15 3 * * *"
+#  schedule:
+#    - cron: "15 3 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  # Build site
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Set up Python 3
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Install uv
-        run: curl -LsSf https://astral.sh/uv/0.9.28/install.sh | sh
+        uses: astral-sh/setup-uv@v8.2.0
+        with:
+          version: "0.11.19"
+          enable-cache: true
       - name: Cache the virtualenv
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: ./.venv
           key: ${{ runner.os }}-venv-${{ hashFiles('**/uv.lock') }}
       - name: Install dependencies
         run: uv sync --no-install-project
-      - name: Build site
-        run: uv run mkdocs build -d public
-      - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Build site for current week
+        run: uv run properdocs build -d public -f properdocs.yml
+      - name: Build full site
+        run: CALENDAR_TODAY="today in 10 years" uv run properdocs build -f properdocs-timeless.yml -d public-timeless
+      - name: Upload site pages artifact
+        if: |
+          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch')
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: public
-
-  # Deploy site to Github pages
-  deploy:
-    needs: build
-    if: >
-      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-      (github.event_name == 'workflow_dispatch') ||
-      (github.event_name == 'schedule')
-    permissions:
-      # to deploy to Pages
-      pages: write
-      # to verify the deployment originates from an appropriate source
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-    steps:
+          path: public-timeless
       - name: Deploy to GitHub Pages
+        if: |
+          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch')
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+      - name: Deploy to Cloudflare Pages
+        if: |
+          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'workflow_dispatch')||
+          (github.event_name == 'schedule')
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy --commit-dirty=true

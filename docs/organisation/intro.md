@@ -7,6 +7,8 @@ title: "Introduction"
 - Titre : MA-CSEL1 - Construction de Systèmes Embarqués sous Linux
 - Intervenant
     - Jacques Supcik (HEIA-FR / ISC)<br/><jacques.supcik@hefr.ch>
+
+{%- if not timeless %}
 - {{ info.students_count }} étudiants inscrits
     {%- if info.students_cs  > 0 %}
     - {{ info.students_cs }} étudiant{% if info.students_cs  > 1 %}s{% endif %} CS
@@ -64,8 +66,8 @@ code pour rejoindre l'équipe : <b>{{ teams_code }}</b>
 {% set week_no = 8 %}
 {% set i = 0 %}
 
-| Semaine                          | Date                    | Thème                                               |
-|:---------------------------------|:------------------------|:----------------------------------------------------|
+| Semaine | Date | Thème |
+|:--------|:-----|:------|
 | {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Environnement Linux embarqué 1 (sur site à Fribourg) | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Environnement Linux embarqué 2 (Teams)               | {% set i = i + 1 %}
 | {{ week_no + i }}/SP-{{ i+1 }}  | {{ cal.start | ld(i) }} | Programmation noyau Linux 1    (sur site à Fribourg) | {% set i = i + 1 %}
@@ -86,6 +88,8 @@ code pour rejoindre l'équipe : <b>{{ teams_code }}</b>
 [^1]: Ce jours est réservé pour finaliser le mini projet intégré. Il n'y a pas de cours en présentiel ce jour-là.
 
 [Calendrier MSE {{ year }}](assets/MSE_CalendrierAcademique_2025-2026_vf.pdf)
+
+{%- endif %}
 
 ## Déroulement des cours
 
@@ -161,9 +165,15 @@ Au terme de ce module, les étudiant-e-s seront capable de :
 ### Rapport
 
 - Rapports de laboratoire par groupe de 2 étudiants, à rendre
+{%- if timeless %}
+    - Environnement Linux embarqué et programmation noyau Linux 
+    - Programmation système Linux et optimisation système Linux
+    -  Mini projet intégré
+{%- else %}
     - {{  cal.start | add_week(6) | dow(3) | euro_day }} : Environnement Linux embarqué et programmation noyau Linux 
     - {{  cal.start | add_week(14) | dow(3) | euro_day }} : Programmation système Linux et optimisation système Linux
     - {{  cal.start | add_week(15) | dow(5) | euro_day }} : Mini projet intégré
+{%- endif %}
 - Format : fichier PDF à déposer dans l'_assignment_ de Teams. Le nom du fichier doit être : <br/>
   `CSEL1-<groupe>-<sujet>.pdf`
 - Langue : français, allemand ou anglais

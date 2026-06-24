@@ -8,3 +8,4 @@ __mkdocs_*.yml
 .DS_Store
 .pages
 *.wzip
+.wrangler

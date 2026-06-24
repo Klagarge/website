@@ -1,26 +1,11 @@
-site_url: https://mse-csel.github.io/website
 site_name: Construction de systèmes embarqués sous Linux
 site_description: Construction de systèmes embarqués sous Linux
 copyright: "Copyright &copy; {{ cal.today.year }} Haute école d'ingénierie et d'architecture of Fribourg"
 
 extra:
   show_page_revision_on_all_pages: false
-  teacher_name: "Jacques Supcik"
-  year: "2025-2026"
-  teams_code: iix61bm
+  teacher_name: 'Jacques Supcik'
   kver: 5.15.148
-  horaire: "1300"
-  info:
-    students_count: 18
-    students_cs: 16
-    students_ds: 0
-    students_eie: 1
-    students_ics: 1
-    students_enen: 0
-    students_ft: 7
-    students_pt: 11
-
-  pdf_to_jpg: programmation-noyau/modules/assets/sp.03.1_mas_csel_noyau_modules.pdf
 
   social:
     - icon: material/web
@@ -36,48 +21,11 @@ extra:
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/hessofilms
 
-  calendar_plugin:
-    start: 2026-02-16
-    end: 2026-06-05
-    week_names:
-      [
-        SP-1,
-        SP-2,
-        SP-3,
-        SP-4,
-        SP-5,
-        SP-6,
-        SP-7,
-        null,
-        SP-8,
-        SP-9,
-        SP-10,
-        SP-11,
-        SP-12,
-        SP-13,
-        SP-14,
-        SP-15,
-      ]
-    plan:
-      SP-1: [lecture1, tp1]
-      SP-2: [tp1_sol]
-      SP-3: [lecture2, tp2]
-      SP-4: [tp2_sol_a]
-      SP-5: [lecture2b, tp2b]
-      SP-6: [tp2_sol_b]
-      SP-7: [lecture3, tp3]
-      SP-8: [tp3_sola]
-      SP-9: []
-      SP-10: [lecture3b, tp3b, tp5]
-      SP-11: [tp3_solb]
-      SP-12: [lecture4, tp4]
-      SP-13: [tp4_sol]
-      SP-14: []
-      SP-15: []
-
 theme:
-  name: material
-  language: "fr"
+  name: materialx
+  language: 'fr'
+  topbar_style: primary
+
   palette:
     # Palette toggle for light mode
     - scheme: hesso
@@ -90,12 +38,12 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   font:
-    text: "Roboto"
-    code: "IBM Plex Mono"
-  custom_dir: "overrides/"
+    text: 'Roboto'
+    code: 'IBM Plex Mono'
+  custom_dir: 'overrides/'
   icon:
     logo: material/school
-  favicon: "assets/images/favicon.ico"
+  favicon: 'assets/images/favicon.ico'
   features:
     - content.code.annotate
     - navigation.tabs
@@ -106,11 +54,10 @@ theme:
     - content.code.copy
 
 extra_css:
-  - "stylesheets/extra.css"
+  - 'stylesheets/extra.css'
 
 extra_javascript:
   - javascripts/mathjax.js
-  - https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=es6
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
@@ -119,8 +66,8 @@ markdown_extensions:
   smarty:
     smart_angled_quotes: true
     substitutions:
-      left-angle-quote: "&laquo;&#xA0;"
-      right-angle-quote: "&#xA0;&raquo;"
+      left-angle-quote: '&laquo;&#xA0;'
+      right-angle-quote: '&#xA0;&raquo;'
   mkdcomments: {}
   footnotes: {}
   codehilite: {}
@@ -140,7 +87,11 @@ markdown_extensions:
   pymdownx.magiclink: {}
   pymdownx.mark: {}
   pymdownx.smartsymbols: {}
-  pymdownx.superfences: {}
+  pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
   pymdownx.tabbed:
     alternate_style: true
   pymdownx.tasklist:
@@ -154,15 +105,20 @@ plugins:
   - search
   - exclude-search:
       exclude_unreferenced: true
-  - git-revision-date-localized
+  - git-revision-date-localized:
+      enable_creation_date: false
+      fallback_to_build_date: true
+      locale: fr
+      timezone: Europe/Zurich
+      enabled: true
   - open-in-new-tab
   - calendar
   - jconfig:
       items:
         - copyright
   - include-markdown:
-      opening_tag: "{!"
-      closing_tag: "!}"
+      opening_tag: '{!'
+      closing_tag: '!}'
   - awesome-pages
   - macros
   - pages-j2
