@@ -15,7 +15,7 @@ title: Infrastructure HEIA-FR
 _Source : https://linux-sunxi.org/images/a/a3/Allwinner_H5_Manual_v1.0.pdf_
 
 - SoC: Allwinner H5, Quad-core 64-bit high-performance Cortex A53
-- DDR3 RAM:1GB
+- DDR3 RAM: 512MiB
 - Storage: 8GB eMMC
 - Network: 10/100/1000M Ethernet based on RTL8211E-VB-CG
 - WiFi: 802.11b/g/n
