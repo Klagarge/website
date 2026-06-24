@@ -1,6 +1,6 @@
 INHERIT: properdocs-base.yml
 site_name: Construction de systèmes embarqués sous Linux - 2025/2026
-site_url: https://csel.isc.heia-fr.ch/
+site_url: https://hesso-csel-website.pages.dev
 
 extra:
   year: '2025-2026'
